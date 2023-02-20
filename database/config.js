@@ -28,5 +28,7 @@ const config = {
 	}
 };
 
-module.exports = { config }
+const connString = "postgresql://postgres:YdZYSm8AGVbLDZX5s620@containers-us-west-85.railway.app:7665/railway"
+
+module.exports = { config, connString }
 

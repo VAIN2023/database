@@ -12,13 +12,16 @@
  */
 
 const { Client } = require('pg');
+const pg = require('pg');
 const { config } = require('./database/config.js');
+const { connString } = require('./database/config.js')
 const spinner = require('nanospinner');
 const inquirer = require('inquirer');
 const process = require('process');
-const database = require('./database/database'); 
+const database = require('./database/database.js'); 
 const chalk = require('chalk');       
-const client = new Client(config.db);
+// const client = new Client(config.db); // This makes it local
+const client = new Client(connString); //This is railways 
 
 /**
  * @param None
@@ -107,6 +110,7 @@ const insertFiletoDatabase = async (pgdb) => {
  */
 const App = async () => {
     await client.connect();
+
     let pgdb = null;
     console.log( chalk.green("Welcome to VAIN database manager"));
     const action = await inquirer.prompt({
